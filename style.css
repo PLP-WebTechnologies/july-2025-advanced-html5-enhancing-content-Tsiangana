@@ -1,0 +1,227 @@
+/* =========================================
+   1. VARIÁVEIS E RESET
+   ========================================= */
+:root {
+    --primary-color: #4a90e2;
+    --secondary-color: #2c3e50;
+    --bg-light: #f4f7f6;
+    --text-dark: #333;
+    --white: #ffffff;
+    --spacing-md: 1.5rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+}
+
+/* =========================================
+   2. NAVBAR (DEMONSTRAÇÃO DE FLEXBOX)
+   ========================================= */
+.navbar {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    padding: 1rem 2rem;
+    
+    /* FLEXBOX: Alinha logo à esquerda e links à direita */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky; /* Menu fixo no topo */
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: none; /* Escondido em mobile por defeito (exceto se usarmos JS para toggle) */
+    gap: 20px;
+}
+
+.nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.burger-menu {
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: block; /* Visível apenas em mobile */
+}
+
+/* =========================================
+   3. HERO SECTION (FLEXBOX CENTERING)
+   ========================================= */
+.hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    height: 60vh; /* 60% da altura da viewport */
+    text-align: center;
+    padding: 20px;
+
+    /* FLEXBOX: A forma mais fácil de centralizar algo vertical e horizontalmente */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.cta-btn {
+    margin-top: 1.5rem;
+    padding: 0.8rem 2rem;
+    background-color: var(--white);
+    color: var(--secondary-color);
+    border: none;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.cta-btn:hover {
+    transform: scale(1.05);
+}
+
+/* =========================================
+   4. MAIN CONTENT & CSS GRID
+   ========================================= */
+.services {
+    padding: 3rem 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.services h2 {
+    text-align: center;
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+}
+
+.section-desc {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #666;
+}
+
+/* O CONTENTOR GRID */
+.grid-container {
+    /* CSS GRID: Define o layout bidimensional */
+    display: grid;
+    
+    /* Mobile First: 1 coluna por defeito */
+    grid-template-columns: 1fr; 
+    
+    gap: 20px; /* Espaço entre as células */
+}
+
+/* O CARTÃO (Dentro da Grid) */
+.card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    
+    /* Usamos Flexbox dentro do item da Grid para alinhar o conteúdo interno */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.card .icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.highlight {
+    border: 2px solid var(--primary-color);
+    background-color: #f0f8ff;
+}
+
+/* =========================================
+   5. RODAPÉ (FLEXBOX)
+   ========================================= */
+.main-footer {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 1.5rem;
+    text-align: center;
+    
+    /* Flexbox para coluna em mobile */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.socials {
+    display: flex;
+    gap: 15px;
+    font-size: 0.9rem;
+}
+
+/* =========================================
+   6. MEDIA QUERIES (RESPONSIVIDADE)
+   ========================================= */
+
+/* TABLET (min-width: 600px) */
+@media (min-width: 600px) {
+    
+    /* Navbar: Mostrar links e esconder hamburguer */
+    .nav-links {
+        display: flex;
+    }
+    .burger-menu {
+        display: none;
+    }
+
+    /* Grid: Passar para 2 colunas */
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Footer: Passar para linha (row) */
+    .main-footer {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 1.5rem 3rem;
+    }
+}
+
+/* DESKTOP (min-width: 900px) */
+@media (min-width: 900px) {
+    
+    .hero h1 {
+        font-size: 3.5rem;
+    }
+
+    /* Grid: Passar para 3 colunas */
+    .grid-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* Exemplo avançado de Grid: O item 'highlight' ocupa 2 linhas se quisermos */
+    /* .card.highlight {
+        grid-row: span 2; 
+    } 
+    */
+}
